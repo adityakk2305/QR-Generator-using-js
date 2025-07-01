@@ -16,31 +16,31 @@
 </head>
 
 <body class="main">
-    <div id="nav" center > 
-        <nav class="navbar navbar-expand-lg custom-navbar" >
-            <div class="container-fluid">
-                <a class="navbar-brand gradient-logo" href="#">QR Code Generator</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-                    <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="about.html">About us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact us</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+  <!-- NAVIGATION BAR -->
+<div id="nav">
+  <nav class="navbar navbar-expand-lg custom-navbar py-3">
+    <div class="container-fluid position-relative">
+      <!-- Logo on the left -->
+      <a class="navbar-brand gradient-logo" href="#">QR Code Generator</a>
+
+      <!-- Nav items centered absolutely -->
+      <div class="center-nav position-absolute top-50 start-50 translate-middle">
+        <ul class="navbar-nav flex-row gap-4">
+          <li class="nav-item">
+            <a class="nav-link text-white fw-medium" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white fw-medium" href="about.html">About us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white fw-medium" href="contact.html">Contact us</a>
+          </li>
+        </ul>
+      </div>
     </div>
+  </nav>
+</div>
+
 
 
 
@@ -64,63 +64,62 @@
 
 
 
-        <footer class="footer-custom">
-  <div class="footer-flex">
-    <div class="footer-left">
-      <i class="bi bi-bootstrap-fill fs-5"></i>
-      <span>© 2025 Company, Inc</span>
-    </div>
-    <div class="footer-right">
-      <a href="#"><i class="bi bi-instagram fs-5"></i></a>
-      <a href="#"><i class="bi bi-facebook fs-5"></i></a>
-    </div>
-  </div>
-</footer>
+    <footer class="footer-custom">
+        <div class="footer-flex">
+            <div class="footer-left">
+                <span>© 2025 Aditya kharatmal</span>
+            </div>
+            <div class="footer-right">
+                <a href="#"><i class="bi bi-instagram fs-5"></i></a>
+                <a href="#"><i class="bi bi-facebook fs-5"></i></a>
+            </div>
+        </div>
+    </footer>
 
 
 
 
-        <script>
-            let imgBox = document.getElementById("imgBox");
-            let qrImage = document.getElementById("qrImage");
-            let qrText = document.getElementById("qrText");
-            let downloadBtn = document.getElementById("downloadBtn"); // Correct ID
+    <script>
+        let imgBox = document.getElementById("imgBox");
+        let qrImage = document.getElementById("qrImage");
+        let qrText = document.getElementById("qrText");
+        let downloadBtn = document.getElementById("downloadBtn"); // Correct ID
 
-            function generateQRCode() {
-                if (qrText.value.length > 0) {
-                    const qrURL = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + encodeURIComponent(qrText.value);
-                    qrImage.src = qrURL;
-                    imgBox.classList.add("show-img");
-                    qrImage.onload = function () {
-                        // Enable the download button after the image loads
-                        downloadBtn.disabled = false;
-                    };
-                } else {
-                    qrText.classList.add('error');
-                    setTimeout(() => {
-                        qrText.classList.remove('error');
-                    }, 1000);
-                    downloadBtn.disabled = true; // Ensure button stays disabled
-                }
+        function generateQRCode() {
+            if (qrText.value.length > 0) {
+                const qrURL = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + encodeURIComponent(qrText.value);
+                qrImage.src = qrURL;
+                imgBox.classList.add("show-img");
+                qrImage.onload = function () {
+                    // Enable the download button after the image loads
+                    downloadBtn.disabled = false;
+                };
+            } else {
+                qrText.classList.add('error');
+                setTimeout(() => {
+                    qrText.classList.remove('error');
+                }, 1000);
+                downloadBtn.disabled = true; // Ensure button stays disabled
             }
+        }
 
-            function downloadQR() {
-                if (qrImage.src && !downloadBtn.disabled) {
-                    const link = document.createElement('a');
-                    link.href = qrImage.src;
-                    link.download = 'qr-code.png';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                } else {
-                    alert("Please generate a QR code first.");
-                }
+        function downloadQR() {
+            if (qrImage.src && !downloadBtn.disabled) {
+                const link = document.createElement('a');
+                link.href = qrImage.src;
+                link.download = 'qr-code.png';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } else {
+                alert("Please generate a QR code first.");
             }
-        </script>
+        }
+    </script>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
